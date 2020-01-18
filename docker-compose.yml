@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+
+  php:
+    container_name: digichange_php_1
+    build: docker/php
+    ports:
+     - "8081:80"
+    volumes:
+     - .:/var/www/html
+     - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
+     - ./docker/apache:/etc/apache2/sites-enabled:ro
+    networks:
+     - appnet
+
+  redis:
+    container_name: digichange_redis_1
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+     - appnet
+
+  db:
+    container_name: digichange_db_1
+    image: postgres:12.1
+    ports:
+     - "5431:5432"
+    environment:
+      POSTGRES_PASSWORD: digi-change
+      POSTGRES_DB: digi-change
+      POSTGRES_USER: digi-change
+    volumes:
+     - data:/var/lib/postgresql/data
+    networks:
+     - appnet
+
+  mail:
+    container_name: digichange_mail_1
+    image: mailhog/mailhog:latest
+    ports:
+     - "8025:8025"
+    networks:
+     - appnet
+
+  s3:
+    container_name: digichange_s3_1
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: 12345678
+    volumes:
+      - s3:/data
+    networks:
+     - appnet
+    command: server /data
+
+networks:
+  appnet:
+    driver: "bridge"
+
+volumes:
+  data:
+    driver: "local"
+  s3:
+    driver: "local"
