@@ -26,7 +26,7 @@ services:
     container_name: digichange_db_1
     image: postgres:12.1
     ports:
-     - "5431:5432"
+     - "5432:5432"
     environment:
       POSTGRES_PASSWORD: digi-change
       POSTGRES_DB: digi-change

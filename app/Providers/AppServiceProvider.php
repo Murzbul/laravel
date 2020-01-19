@@ -2,13 +2,26 @@
 
 namespace App\Providers;
 
+use App\Infrastructure\Doctrine\Repositories\DoctrineItemRepository;
+use App\Infrastructure\Doctrine\Repositories\DoctrinePersistRepository;
+use App\Infrastructure\Doctrine\Repositories\DoctrineReadRepository;
+use Digichange\Repositories\ItemRepository;
+use Digichange\Repositories\PersistRepository;
+use Digichange\Repositories\ReadRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    private $classBindings = [];
+    private $classBindings = [
+        //Generic Repositories
+        PersistRepository::class => DoctrinePersistRepository::class,
 
-        /**
+        //Read Repositories
+        ItemRepository::class => DoctrineItemRepository::class,
+        ReadRepository::class => DoctrineReadRepository::class,
+    ];
+
+    /**
      * Register any application services.
      *
      * @return void
@@ -38,7 +51,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
     }
 
     private function configureMonologSentryHandler()

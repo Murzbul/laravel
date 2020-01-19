@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Api\Handlers\Items\CreateItemHandler;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+//Route::get('/items/{itemId}', 'CreateItemHandler@handler')->name(CreateItemHandler::class);
+Route::post('/items', 'CreateItemHandler@handler')->name(CreateItemHandler::class);
