@@ -122,6 +122,7 @@
             "php artisan vendor:publish --tag=\"assets\"",
             "php artisan doctrine:clear:metadata:cache",
             "php artisan doctrine:generate:proxies",
+            "php artisan migrate",
             "php artisan doctrine:schema:update --force"
         ],
         "stan": "php -d memory_limit=500M ./vendor/bin/phpstan analyse -l 3 -c phpstan.neon src app config resources tests",
