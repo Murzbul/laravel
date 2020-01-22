@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "e50ba035-6c1f-4622-b3a6-50ae808cf6ea",
+		"name": "Digichange/Laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Items",
+			"item": [
+				{
+					"name": "Create Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98e847b3-c7b2-46d9-b8d3-b7ac214a5a2c",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response has data\"] = _.has(jsonData, 'data');",
+									"",
+									"pm.globals.set(\"ITEM_ID\", jsonData.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Item 1\"\n}\n"
+						},
+						"url": {
+							"raw": "{{URL}}/api/items",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98e847b3-c7b2-46d9-b8d3-b7ac214a5a2c",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response has token\"] = _.has(jsonData.data, 'access_token');",
+									"tests[\"Response has email\"] = _.has(jsonData.data, 'email');",
+									"",
+									"pm.globals.set(\"ID\", jsonData.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Item 1 Update\"\n}\n"
+						},
+						"url": {
+							"raw": "{{URL}}/api/items/{{ITEM_ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"items",
+								"{{ITEM_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98e847b3-c7b2-46d9-b8d3-b7ac214a5a2c",
+								"exec": [
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response has token\"] = _.has(jsonData.data, 'access_token');",
+									"tests[\"Response has email\"] = _.has(jsonData.data, 'email');",
+									"",
+									"pm.globals.set(\"ID\", jsonData.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/items?search=a",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"items"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98e847b3-c7b2-46d9-b8d3-b7ac214a5a2c",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Response has token\"] = _.has(jsonData.data, 'id');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/items/{{ITEM_ID}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"items",
+								"{{ITEM_ID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
