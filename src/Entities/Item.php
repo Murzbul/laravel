@@ -2,6 +2,8 @@
 
 namespace Digichange\Entities;
 
+use Digichange\Payloads\Items\ItemUpdatePayload;
+
 class Item
 {
     /** @var int */
@@ -22,5 +24,10 @@ class Item
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function update(ItemUpdatePayload $payload)
+    {
+        $this->name = $payload->name();
     }
 }

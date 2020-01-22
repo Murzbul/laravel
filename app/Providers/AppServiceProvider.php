@@ -9,14 +9,19 @@ use Digichange\Repositories\ItemRepository;
 use Digichange\Repositories\PersistRepository;
 use Digichange\Repositories\ReadRepository;
 use Illuminate\Support\ServiceProvider;
+use Lib\Criteria\Contracts\Criteria;
+use Lib\Criteria\Contracts\Criteria as ICriteria;
 
 class AppServiceProvider extends ServiceProvider
 {
     private $classBindings = [
-        //Generic Repositories
+        // Criteria
+        ICriteria::class => Criteria::class,
+
+        // Generic Repositories
         PersistRepository::class => DoctrinePersistRepository::class,
 
-        //Read Repositories
+        // Read Repositories
         ItemRepository::class => DoctrineItemRepository::class,
         ReadRepository::class => DoctrineReadRepository::class,
     ];

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Api\Handlers\Items\CreateItemHandler;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-//Route::get('/items/{itemId}', 'CreateItemHandler@handler')->name(CreateItemHandler::class);
-Route::post('/items', 'CreateItemHandler@handler')->name(CreateItemHandler::class);
+Route::post('/items', 'ItemHandler@create')->name('ItemHandler@create');
+Route::put('/items/{itemId}', 'ItemHandler@update')->name('ItemHandler@update');
+Route::get('/items', 'ItemHandler@list')->name('ItemHandler@list');
+Route::get('/items/{itemId}', 'ItemHandler@show')->name('ItemHandler@show');

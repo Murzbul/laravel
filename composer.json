@@ -77,7 +77,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Digichange\\": "src/"
+            "Digichange\\": "src/",
+            "Lib\\": "lib/"
         },
         "classmap": [
             "database/seeds",
