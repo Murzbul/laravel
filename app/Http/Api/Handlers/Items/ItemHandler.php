@@ -37,10 +37,9 @@ class ItemHandler extends Handler
     {
         $request->validate();
 
-        // TODO: Add pagination logic and data
         $items = $this->service->list($request);
 
-        return $this->responder->success($items, new ItemTransformer())->respond();
+        return $this->responder->success($items, new ItemTransformer())->paginator(adapt_paginator($items, $request));
     }
 
     public function update(ItemUpdateRequest $request)

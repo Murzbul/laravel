@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Lib\Criteria\Contracts\Criteria as ICriteria;
 use Lib\Criteria\Contracts\Filter;
 use Lib\Criteria\Contracts\Sorting;
+use Lib\Criteria\Contracts\Pagination as IPagination;
+use Lib\Criteria\Pagination;
 
 class Criteria implements ICriteria
 {
@@ -43,12 +45,12 @@ class Criteria implements ICriteria
         return $this->sorting;
     }
 
-    public function getPaginationData(): PaginationData
+    public function getPagination(): IPagination
     {
         $limit = $this->parseLimit();
         $page = $this->parsePage();
 
-        return new PaginationData($limit, $page);
+        return new Pagination($limit, $page);
     }
 
     public function validate(): void
