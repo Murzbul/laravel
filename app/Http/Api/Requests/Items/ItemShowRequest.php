@@ -25,7 +25,7 @@ class ItemShowRequest implements ItemShowPayload
         $this->repository = $repository;
     }
 
-    public function id(): int
+    public function id(): string
     {
         return $this->request->route()->parameter(self::ID);
     }

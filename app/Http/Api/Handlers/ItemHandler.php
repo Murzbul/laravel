@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Api\Handlers\Items;
+namespace App\Http\Api\Handlers;
 
-use App\Http\Api\Handlers\Handler;
 use App\Http\Api\Requests\Items\ItemCreateRequest;
 use App\Http\Api\Requests\Items\ItemListRequest;
 use App\Http\Api\Requests\Items\ItemShowRequest;

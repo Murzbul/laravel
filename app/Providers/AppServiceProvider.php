@@ -5,12 +5,18 @@ namespace App\Providers;
 use App\Infrastructure\Doctrine\Repositories\DoctrineItemRepository;
 use App\Infrastructure\Doctrine\Repositories\DoctrinePersistRepository;
 use App\Infrastructure\Doctrine\Repositories\DoctrineReadRepository;
+use App\Infrastructure\Doctrine\Repositories\DoctrineRoleRepository;
+use App\Infrastructure\Doctrine\Repositories\DoctrineUserRepository;
 use Digichange\Repositories\ItemRepository;
 use Digichange\Repositories\PersistRepository;
 use Digichange\Repositories\ReadRepository;
+use Digichange\Repositories\RoleRepository;
+use Digichange\Repositories\UserRepository;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\ServiceProvider;
 use Lib\Criteria\Contracts\Criteria;
 use Lib\Criteria\Contracts\Criteria as ICriteria;
+use Lib\Doctrine\Types\UuidType;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
         // Read Repositories
         ItemRepository::class => DoctrineItemRepository::class,
         ReadRepository::class => DoctrineReadRepository::class,
+        UserRepository::class => DoctrineUserRepository::class,
+        RoleRepository::class => DoctrineRoleRepository::class,
     ];
 
     /**
@@ -56,6 +64,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (! Type::hasType(UuidType::UUID)) {
+            Type::addType(UuidType::UUID, UuidType::class);
+        }
     }
 
     private function configureMonologSentryHandler()

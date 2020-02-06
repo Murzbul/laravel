@@ -163,6 +163,12 @@ return [
         /*
          * Package Service Providers...
          */
+        LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
+        LaravelDoctrine\Extensions\BeberleiExtensionsServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Flugg\Responder\ResponderServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+        Sentry\Laravel\ServiceProvider::class,
 
         /*
          * Application Service Providers...

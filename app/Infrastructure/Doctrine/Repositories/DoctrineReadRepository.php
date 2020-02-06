@@ -27,6 +27,17 @@ abstract class DoctrineReadRepository extends EntityRepository implements ReadRe
         return $entity;
     }
 
+    public function getOneBy(array $criteria, array $orderBy = null)
+    {
+        $entity = $this->findOneBy($criteria, $orderBy);
+
+        if (! $entity) {
+            throw new EntityNotFoundException($entity);
+        }
+
+        return $entity;
+    }
+
     public function findOne($id)
     {
         return $this->find($id);

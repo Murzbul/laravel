@@ -85,7 +85,7 @@ class RouteServiceProvider extends ServiceProvider
 
         /** @var SplFileInfo $file */
         foreach ($handlers as $file) {
-            $route = $this->namespace . '\\' . $file->getRelativePath();
+            $route = $this->namespace . $file->getRelativePath();
 
             Route::middleware('api')
                 ->prefix(static::API_ROUTE_PREFIX)

@@ -2,10 +2,12 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Authorization;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
+    public const API = 'digichange-api';
     /**
      * The application's global HTTP middleware stack.
      *
@@ -40,6 +42,11 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+        ],
+
+        self::API => [
+            'auth:api',
+            Authorization::class,
         ],
     ];
 

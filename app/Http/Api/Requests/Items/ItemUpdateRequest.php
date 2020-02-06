@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ItemUpdateRequest implements ItemUpdatePayload
 {
-    const ID = 'id';
+    const ID = 'itemId';
     const NAME = 'name';
 
     /** @var Request */
@@ -30,7 +30,7 @@ class ItemUpdateRequest implements ItemUpdatePayload
         return $this->request->get(self::NAME);
     }
 
-    public function id(): int
+    public function id(): string
     {
         return $this->request->route()->parameter(self::ID);
     }

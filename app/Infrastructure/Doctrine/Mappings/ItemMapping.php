@@ -5,6 +5,7 @@ namespace App\Infrastructure\Doctrine\Mappings;
 use Digichange\Entities\Item;
 use LaravelDoctrine\Fluent\EntityMapping;
 use LaravelDoctrine\Fluent\Fluent;
+use Lib\Doctrine\Types\UuidType;
 
 class ItemMapping extends EntityMapping
 {
@@ -15,7 +16,7 @@ class ItemMapping extends EntityMapping
 
     public function map(Fluent $builder)
     {
-        $builder->integer('id')->primary()->autoIncrement();
+        $builder->field(UuidType::UUID, 'id')->primary();
         $builder->string('name');
     }
 }

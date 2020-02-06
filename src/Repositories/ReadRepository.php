@@ -14,6 +14,8 @@ interface ReadRepository extends ObjectRepository
      */
     public function get(int $id);
 
+    public function getOneBy(array $criteria, array $orderBy = null);
+
     /**
      * @throws EntityNotFoundException
      *

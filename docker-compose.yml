@@ -6,7 +6,7 @@ services:
     container_name: digichange_php_1
     build: docker/php
     ports:
-     - "8081:80"
+     - "8115:80"
     volumes:
      - .:/var/www/html
      - ./docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini:ro
@@ -18,7 +18,7 @@ services:
     container_name: digichange_redis_1
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - "6315:6379"
     networks:
      - appnet
 
@@ -26,7 +26,7 @@ services:
     container_name: digichange_db_1
     image: postgres:12.1
     ports:
-     - "5432:5432"
+     - "5415:5432"
     environment:
       POSTGRES_PASSWORD: digi-change
       POSTGRES_DB: digi-change
@@ -40,7 +40,7 @@ services:
     container_name: digichange_mail_1
     image: mailhog/mailhog:latest
     ports:
-     - "8025:8025"
+     - "8015:8025"
     networks:
      - appnet
 
@@ -48,7 +48,7 @@ services:
     container_name: digichange_s3_1
     image: minio/minio:latest
     ports:
-      - "9000:9000"
+      - "9015:9000"
     environment:
       MINIO_ACCESS_KEY: minio
       MINIO_SECRET_KEY: 12345678

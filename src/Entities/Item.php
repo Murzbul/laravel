@@ -3,20 +3,22 @@
 namespace Digichange\Entities;
 
 use Digichange\Payloads\Items\ItemUpdatePayload;
+use Ramsey\Uuid\Uuid;
 
 class Item
 {
-    /** @var int */
+    /** @var Uuid */
     private $id;
     /** @var string */
     private $name;
 
     public function __construct(string $name)
     {
+        $this->id = Uuid::uuid4();
         $this->name = $name;
     }
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
