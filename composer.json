@@ -125,7 +125,7 @@
             "php artisan doctrine:generate:proxies",
             "php artisan migrate",
             "php artisan doctrine:schema:update --force",
-            "php artisan jwt:secret"
+            "php artisan jwt:secret --force"
         ],
         "stan": "php -d memory_limit=500M ./vendor/bin/phpstan analyse -l 3 -c phpstan.neon src app config resources tests",
         "unit": "./vendor/bin/phpunit",
